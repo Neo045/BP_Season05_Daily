@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bachelor Point S05</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  padding:20px 12px;
+  background:linear-gradient(135deg,#0f2027,#2c5364);
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  width:300px;
+  height:300px;
+  left:50%;
+  top:20%;
+  transform:translateX(-50%);
+  background:#00ffcc;
+  filter:blur(80px);
+  opacity:0.3;
+  animation:pulse 5s infinite;
+  z-index:0;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+}
+
+@media (max-width:480px){
+  .coffee-float{
+    width:48px;
+    height:122px;
+    right:max(9px, env(safe-area-inset-right)) !important;
+    border-radius:25px;
+  }
+
+  .coffee-float::before{
+    border-radius:24px;
+  }
+
+  .coffee-float:hover{
+    width:54px;
+  }
+}
+
+
+/* animations */
+@keyframes pathTriangle {
+  33% { stroke-dashoffset: 74; }
+  66% { stroke-dashoffset: 147; }
+  100% { stroke-dashoffset: 221; }
+}
+
+@keyframes dotTriangle {
+  33% { transform: translate(0,0); }
+  66% { transform: translate(10px,-18px); }
+  100% { transform: translate(-10px,-18px); }
+}
+
+@keyframes pathRect {
+  25% { stroke-dashoffset: 64; }
+  50% { stroke-dashoffset: 128; }
+  75% { stroke-dashoffset: 192; }
+  100% { stroke-dashoffset: 256; }
+}
+
+@keyframes dotRect {
+  25% { transform: translate(0,0); }
+  50% { transform: translate(18px,-18px); }
+  75% { transform: translate(0,-36px); }
+  100% { transform: translate(-18px,-18px); }
+}
+
+@keyframes pathCircle {
+  25% { stroke-dashoffset: 125; }
+  50% { stroke-dashoffset: 175; }
+  75% { stroke-dashoffset: 225; }
+  100% { stroke-dashoffset: 275; }
+}
+
+.rain{
+  position:fixed;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:1;
+}
+
+.rain span{
+  position:absolute;
+  width:2px;
+  height:10px;
+  background:#00ffcc;
+  opacity:0.4;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{ transform:translateY(110vh); }
+}
+
+.container{
+  position:relative;
+  width:100%;
+  max-width:360px;
+  margin:0 auto;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 20px rgba(0,255,200,0.3);
+  text-align:center;
+  color:white;
+  z-index:2;
+}
+
+.poster{
+  width:100%;
+  border-radius:15px;
+}
+
+.title{
+  margin-top:10px;
+  color:#00ffcc;
+  text-shadow:0 0 8px #00ffcc;
+}
+
+.link-btn{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border:none;
+  border-radius:12px;
+  background:rgba(0,255,200,0.2);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  position:relative;
+}
+
+.link-btn:hover{
+  background:#00ffcc;
+  color:black;
+  transform:scale(1.03);
+}
+
+}
+
+/* ☕ Premium Floating Support Button */
+.coffee-float{
+position:fixed !important;
+top:50% !important;
+right:max(12px, env(safe-area-inset-right)) !important;
+left:auto !important;
+bottom:auto !important;
+transform:translateY(-50%) !important;
+width:52px;
+height:138px;
+border-radius:28px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:10px;
+font-size:23px;
+text-decoration:none;
+color:#fff;
+background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.06));
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.22);
+box-shadow:
+0 8px 30px rgba(0,0,0,.35),
+0 0 22px rgba(255,183,3,.22),
+inset 0 1px 0 rgba(255,255,255,.18);
+z-index:99999;
+transition:width .3s ease, box-shadow .3s ease, background .3s ease;
+overflow:hidden;
+isolation:isolate;
+}
+
+.coffee-float::before{
+content:"";
+position:absolute;
+inset:1px;
+border-radius:27px;
+background:linear-gradient(180deg,rgba(255,255,255,.10),transparent 45%,rgba(255,183,3,.06));
+pointer-events:none;
+z-index:-1;
+}
+
+.coffee-float::after{
+content:"";
+position:absolute;
+top:13px;
+left:50%;
+width:24px;
+height:2px;
+border-radius:10px;
+background:rgba(255,255,255,.35);
+transform:translateX(-50%);
+}
+
+.coffee-float span{
+position:static;
+font-size:11px;
+font-weight:700;
+letter-spacing:2px;
+writing-mode:vertical-rl;
+text-orientation:mixed;
+white-space:nowrap;
+opacity:.9;
+color:rgba(255,255,255,.92);
+text-shadow:0 1px 8px rgba(0,0,0,.4);
+transition:.3s;
+}
+
+.coffee-float:hover{
+width:62px;
+background:linear-gradient(160deg,rgba(255,183,3,.28),rgba(255,255,255,.08));
+box-shadow:
+0 10px 35px rgba(0,0,0,.4),
+0 0 30px rgba(255,183,3,.42),
+inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.coffee-float:hover span{
+color:#ffcf4a;
+}
+
+/* ☕ Coffee Card */
+.coffee-card{
+margin-top:15px;
+padding:15px;
+border-radius:15px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(8px);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.coffee-card h3{
+color:#ffb703;
+margin-bottom:8px;
+}
+
+.coffee-btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 20px;
+border-radius:12px;
+text-decoration:none;
+background:#ffb703;
+color:black;
+font-weight:bold;
+}
+
+/* 🎉 Premium Popup */
+.popup-overlay{
+position:fixed;
+inset:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(6px);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.popup{
+width:90%;
+max-width:320px;
+background:rgba(15,15,15,.95);
+padding:25px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 30px rgba(0,255,204,.25);
+animation:popupShow .35s ease;
+}
+
+.popup h2{
+color:#ffb703;
+margin-bottom:10px;
+}
+
+.popup p{
+color:#ddd;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.popup-btn{
+display:inline-block;
+padding:12px 20px;
+background:#ffb703;
+color:black;
+font-weight:bold;
+text-decoration:none;
+border-radius:12px;
+}
+
+.close-popup{
+margin-top:12px;
+background:none;
+border:none;
+color:#aaa;
+cursor:pointer;
+font-size:14px;
+}
+
+@keyframes popupShow{
+from{
+opacity:0;
+transform:scale(.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+</style>
+</head>
+
+<body>
+
+
+<audio id="bgSound" loop>
+  <source src="https://file.garden/aZfQ0ZO7dDZU3Ub3/Track_BP.mp3">
+</audio>
+
+<div class="rain"></div>
+
+<div class="container">
+
+<img src="https://i.postimg.cc/0Nw8q5Dc/IMG-20261112-191609-078.jpg" class="poster">
+
+<div class="coffee-card">
+<h3>☕ Support The Creator</h3>
+<p>If you enjoy these uploads, consider buying me a coffee ❤️</p>
+
+<a href="https://www.supportkori.com/shihabrahman"
+class="coffee-btn"
+target="_blank">
+Buy Me Coffee
+</a>
+</div>
+
+<div class="title">Bachelor Point Season 05 (1080p) G-Drive</div>
+
+<button class="link-btn" onclick="go('ep129_140')">🎬 Episode 129-140 (1080p) For 🍎 I-Phone User [Uploading..]</button>
+
+<div class="title">Bachelor Point Season 05 Episode 129-140 Single Episode (1080p)</div>
+
+<button class="link-btn" onclick="go('ep129)">🎬 Episode 129 (1080p)</button>
+<button class="link-btn" onclick="go('ep130')">🎬 Episode 130 (1080p)</button>
+<button class="link-btn" onclick="go('ep131')">🎬 Episode 131 (1080p)</button>
+<button class="link-btn" onclick="go('ep132')">🎬 Episode 132 (1080p)</button>
+<button class="link-btn" onclick="go('ep133')">🎬 Episode 133 (1080p)</button>
+<button class="link-btn" onclick="go('ep134')">🎬 Episode 134 (1080p)</button>
+<button class="link-btn" onclick="go('ep135')">🎬 Episode 135 (1080p) [Release : 26 NoV]</button>
+<button class="link-btn" onclick="go('ep136')">🎬 Episode 136 (1080p) [Release : 26 NoV]</button>
+<button class="link-btn" onclick="go('ep137')">🎬 Episode 137 (1080p) [Release : 26 NoV]</button>
+<button class="link-btn" onclick="go('ep138')">🎬 Episode 138 (1080p) [Release : 26 NoV]</button>
+<button class="link-btn" onclick="go('ep139')">🎬 Episode 139 (1080p) [Release : 26 NoV]</button>
+<button class="link-btn" onclick="go('ep140')">🎬 Episode 140 (1080p) [Release : 26 NoV]</button>
+</div>
+
+<script>
+const links = {
+  ep129_140: "GDrive",
+  ep129: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/TWjdndPa/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=0ece1e9f615eb168263a3c5287e9f9cd5bcb0c86bd7a2a55659863d9ff03d00b",
+  ep130: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/Rjdw6AD9/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=5d55cdc89f01cf7feaa118e6d2a86f3d9afe9c46053c76c69955a63cef3becf1",
+  ep131: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/WrR9tK9g/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=2e91870a14befea34dd17e9f3767b94ddd6dda63c80d6f1d431a994a24a3dbe5",
+  ep132: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/4oyNWG5A/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=fa2bd5011f337597ad423a5632748ee2109fdbf242b9ffc623875e71d87c0ca9",
+  ep133: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/iB4mcGZV/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=2fd514bcfbf7cc113d737a717dc2b3d2ee9bd114e55bfb8664eb0cf356691cb0",
+  ep134: "https://999c8bfadce536bf3068e488c127691c.r2.cloudflarestorage.com/movielinkbd/media/2ECbBKBi/main?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=a42b844b9f9d69b522136d088cb62f8d%2F20261112%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20261112T120000Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=d3ac14411b155613479ec76c43809b507302cfbf5ec869f1206850c36610e752",
+  ep135: "[Release : 26 NoV]",
+  ep136: "[Release : 26 NoV]",
+  ep137: "[Release : 26 NoV]",
+  ep138: "[Release : 26 NoV]",
+  ep139: "[Release : 26 NoV]",
+  ep149: "[Release : 26 NoV]"
+};
+
+const sound = document.getElementById("bgSound");
+
+window.addEventListener("load",()=>{
+  sound.play().catch(()=>{});
+
+  document.body.addEventListener("click",()=>{
+    sound.play().catch(()=>{});
+  },{once:true});
+
+  const rain=document.querySelector('.rain');
+  for(let i=0;i<30;i++){
+    let d=document.createElement('span');
+    d.style.left=Math.random()*100+"vw";
+    d.style.animationDuration=(Math.random()*2+1)+"s";
+    d.style.animationDelay=(Math.random()*2)+"s";
+    rain.appendChild(d);
+  }
+
+  const lastSeen=localStorage.getItem("coffeePopupSeen");
+
+  if(
+    !lastSeen ||
+    (Date.now()-parseInt(lastSeen)) > 86400000
+  ){
+    setTimeout(()=>{
+      document.getElementById("coffeePopup").style.display="flex";
+    },2500);
+  }
+});
+
+function go(key){
+  const url = links[key];
+  if(url){
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+}
+
+function closeCoffeePopup(){
+  document.getElementById("coffeePopup").style.display="none";
+  localStorage.setItem("coffeePopupSeen",Date.now());
+}
+</script>
+<!-- Floating Coffee Button -->
+<a href="https://www.supportkori.com/shihabrahman"
+class="coffee-float"
+target="_blank">
+☕
+<span>SUPPORT</span>
+</a>
+
+<!-- Premium Popup -->
+<div class="popup-overlay" id="coffeePopup" onclick="if(event.target===this) closeCoffeePopup()">
+<div class="popup">
+
+<h2>☕ Enjoying The Content?</h2>
+
+<p>
+Support future uploads and server costs by buying me a coffee ❤️
+</p>
+
+<a href="https://www.supportkori.com/shihabrahman"
+class="popup-btn"
+target="_blank">
+Buy Me Coffee
+</a>
+
+<br>
+
+<button class="close-popup"
+onclick="closeCoffeePopup()">
+Maybe Later
+</button>
+
+</div>
+</div>
+</body>
+</html>
